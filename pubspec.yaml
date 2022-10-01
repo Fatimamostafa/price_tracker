@@ -1,0 +1,36 @@
+name: pricetracker
+description: A Price Tracker Application
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.0-31.0.dev <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+
+  fonts:
+    - family: Lato
+      fonts:
+        - asset: assets/fonts/lato_bold.ttf
+          weight: 700
+        - asset: assets/fonts/lato_regular.ttf
+          weight: 400
+        - asset: assets/fonts/lato_light.ttf
+          weight: 300
+
