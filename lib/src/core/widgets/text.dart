@@ -70,7 +70,7 @@ extension TextTypeExtension on TextType {
       case TextType.bold:
         return TextStyle(
           fontWeight: FontWeight.w700,
-          fontSize: applySpacing(1.5),
+          fontSize: applySpacing(3),
         );
     }
   }

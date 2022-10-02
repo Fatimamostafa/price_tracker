@@ -4,8 +4,12 @@ import 'src/core/utils/disable_scroll_glow.dart';
 import 'src/core/values/colors.dart';
 import 'src/features/home/presentation/pages/home_page.dart';
 import 'src/features/splash/splash_page.dart';
+import 'src/core/utils/service_locator.dart' as di;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
+  await _portrait();
   runApp(const MyApp());
 }
 
@@ -48,4 +52,9 @@ class MyApp extends StatelessWidget {
       home: const SplashPage(),
     );
   }
+}
+
+/// Locks app in portrait orientation
+Future<void> _portrait() async {
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 }
