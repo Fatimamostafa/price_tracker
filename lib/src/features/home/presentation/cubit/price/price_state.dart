@@ -9,10 +9,12 @@ class PriceInitial extends PriceState {
 }
 
 class PriceLoaded extends PriceState {
-  final double price;
+  final double currentPrice;
+  final double previousPrice;
 
   const PriceLoaded({
-    required this.price,
+    required this.currentPrice,
+    required this.previousPrice,
   });
 }
 

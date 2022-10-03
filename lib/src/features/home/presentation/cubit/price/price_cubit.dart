@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pricetracker/src/core/values/constants.dart';
 import 'package:pricetracker/src/features/home/data/models/price/price_error.dart';
@@ -10,6 +11,7 @@ part 'price_state.dart';
 class PriceCubit extends Cubit<PriceState> {
   final _channel = IOWebSocketChannel.connect(Uri.parse(Constants.baseUrl));
   String? _subscriptionId;
+  double _previousPrice = 0;
 
   PriceCubit() : super(const PriceInitial()) {
     _channel.stream.listen((event) {
@@ -19,6 +21,10 @@ class PriceCubit extends Cubit<PriceState> {
       } else if (map.containsKey('tick')) {
         onLoadedPrice(map);
       }
+    }, onDone: () {
+      debugPrint('ws channel closed');
+    }, onError: (error) {
+      debugPrint('ws error $error');
     });
   }
 
@@ -42,7 +48,8 @@ class PriceCubit extends Cubit<PriceState> {
     final data = PriceModel.fromJson(map);
     _subscriptionId = data.subscription.id;
     final price = data.tick.quote;
-    emit(PriceLoaded(price: price));
+    emit(PriceLoaded(currentPrice: price, previousPrice: _previousPrice));
+    _previousPrice = price;
   }
 
   void onPriceError(Map<String, dynamic> map) {

@@ -20,6 +20,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
+        centerTitle: true,
         title: const AppText(
           text: Constants.appTitle,
           textType: TextType.bold,
