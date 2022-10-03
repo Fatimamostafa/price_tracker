@@ -13,21 +13,22 @@ class PriceCubit extends Cubit<PriceState> {
 
   PriceCubit() : super(const PriceInitial()) {
     _channel.stream.listen((event) {
-      if (event.contains("error")) {
-        onPriceError(event);
-      } else if (event.contains("ticks")) {
-        onLoadedPrice(event);
+      Map<String, dynamic> map = jsonDecode(event);
+      if (map.containsKey('error')) {
+        onPriceError(map);
+      } else if (map.containsKey('tick')) {
+        onLoadedPrice(map);
       }
     });
   }
 
   void getPrice(String symbol) async {
     priceForget();
-
     emit(const PriceLoading());
+
     _channel.sink.add(jsonEncode({
-      "ticks": symbol,
-      "subscribe": 1,
+      'ticks': symbol,
+      'subscribe': 1,
     }));
   }
 
@@ -37,23 +38,26 @@ class PriceCubit extends Cubit<PriceState> {
     return super.close();
   }
 
-  void onLoadedPrice(event) async {
-    final price = PriceModel.fromJson(jsonDecode(event));
-    _subscriptionId = price.subscription.id;
-    emit(PriceLoaded(price: price.tick.quote));
+  void onLoadedPrice(Map<String, dynamic> map) async {
+    final data = PriceModel.fromJson(map);
+    _subscriptionId = data.subscription.id;
+    final price = data.tick.quote;
+    emit(PriceLoaded(price: price));
   }
 
-  void onPriceError(event) {
-    final data = PriceError.fromJson(jsonDecode(event));
+  void onPriceError(Map<String, dynamic> map) {
+    final data = PriceError.fromJson(map);
 
     emit(PriceNotFound(message: data.error.message));
   }
 
   void priceForget() {
-    print('priceForget $_subscriptionId');
-    if (_subscriptionId != null) {
-      _channel.sink.add(jsonEncode({"forget": _subscriptionId}));
-    }
+
     emit(const PriceInitial());
+    if (_subscriptionId != null) {
+      _channel.sink.add(jsonEncode({
+        'forget': _subscriptionId,
+      }));
+    }
   }
 }

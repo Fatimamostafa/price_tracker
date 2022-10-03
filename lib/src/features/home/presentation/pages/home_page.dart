@@ -7,40 +7,14 @@ import 'package:pricetracker/src/core/values/constants.dart';
 import 'package:pricetracker/src/features/home/presentation/cubit/home/home_cubit.dart';
 import 'package:pricetracker/src/features/home/presentation/cubit/price/price_cubit.dart';
 import 'package:pricetracker/src/features/home/presentation/cubit/symbol/symbol_cubit.dart';
-import 'package:pricetracker/src/features/home/presentation/widgets/company_dropdown.dart';
+import 'package:pricetracker/src/features/home/presentation/widgets/company.dart';
 import 'package:pricetracker/src/features/home/presentation/widgets/price.dart';
-import 'package:pricetracker/src/features/home/presentation/widgets/symbol_dropdown.dart';
-import 'package:web_socket_channel/io.dart';
+import 'package:pricetracker/src/features/home/presentation/widgets/symbols.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   static const routeName = '/home';
-
   const HomePage({Key? key}) : super(key: key);
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  var channel = IOWebSocketChannel.connect(
-      Uri.parse('wss://ws.binaryws.com/websockets/v3?app_id=33006'));
-
-  String selectedSymbol = Constants.dropdownSymbolHint;
-  String selectedCompany = 'iom';
-
-  @override
-  void initState() {
-    super.initState();
-    streamListener();
-  }
-
-  streamListener() {
-    channel.sink.add(jsonEncode({"active_symbols": "brief"}));
-
-    channel.stream.listen((message) {
-      Map data = jsonDecode(message);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

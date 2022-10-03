@@ -14,8 +14,9 @@ class SymbolCubit extends Cubit<SymbolState> {
 
   SymbolCubit() : super(const SymbolsEmpty(message: 'Empty')) {
     _channel.stream.listen((event) {
-      if (event.contains("active_symbols")) {
-        onLoadedActiveSymbols(event);
+      Map<String, dynamic> map = jsonDecode(event);
+      if (map.containsKey('active_symbols')) {
+        onLoadedActiveSymbols(map);
       }
     });
   }
@@ -24,8 +25,8 @@ class SymbolCubit extends Cubit<SymbolState> {
     emit(const SymbolsLoading());
     sl<PriceCubit>().priceForget();
     _channel.sink.add(jsonEncode({
-      "active_symbols": "brief",
-      "landing_company": landingCompany,
+      'active_symbols': 'brief',
+      'landing_company': landingCompany,
     }));
   }
 
@@ -35,15 +36,11 @@ class SymbolCubit extends Cubit<SymbolState> {
     return super.close();
   }
 
-  void onLoadedActiveSymbols(event) async {
-    final activeSymbols = ActiveSymbols.fromJson(jsonDecode(event));
+  void onLoadedActiveSymbols(Map<String, dynamic> map) async {
+    final activeSymbols = ActiveSymbols.fromJson(map);
 
     activeSymbols.active_symbols.isNotEmpty
-        ? emit(
-            SymbolsLoaded(symbols: activeSymbols),
-          )
-        : emit(
-            const SymbolsEmpty(message: Constants.emptySymbols),
-          );
+        ? emit(SymbolsLoaded(symbols: activeSymbols))
+        : emit(const SymbolsEmpty(message: Constants.emptySymbols));
   }
 }

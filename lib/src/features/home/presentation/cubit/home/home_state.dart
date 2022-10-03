@@ -14,14 +14,4 @@ class CompanyLoaded extends HomeState {
   const CompanyLoaded({
     required this.companyEnums,
   });
-
-  // @override
-  // bool operator ==(Object o) {
-  //   if (identical(this, o)) return true;
-  //
-  //   return o is CompanyLoaded && o.companyEnums == companyEnums;
-  // }
-  //
-  // @override
-  // int get hashCode => companyEnums.hashCode;
 }

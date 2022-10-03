@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:pricetracker/src/core/utils/imports.dart';
 
 class AppText extends StatelessWidget {
@@ -53,8 +52,6 @@ class AppText extends StatelessWidget {
 }
 
 extension TextTypeExtension on TextType {
-  String get name => describeEnum(this);
-
   TextStyle get style {
     switch (this) {
       case TextType.regular:

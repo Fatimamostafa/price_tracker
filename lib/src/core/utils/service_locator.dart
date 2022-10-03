@@ -1,5 +1,4 @@
 import 'package:get_it/get_it.dart';
-import 'package:pricetracker/src/core/network/http_client.dart';
 import 'package:pricetracker/src/features/home/data/datasources/home_datasource.dart';
 import 'package:pricetracker/src/features/home/data/repositories/home_repository_impl.dart';
 import 'package:pricetracker/src/features/home/domain/repositories/home_repository.dart';
@@ -14,7 +13,7 @@ final sl = GetIt.instance;
 /// Initializes dependencies on app start
 Future<void> init() async {
   // Cubit
-  sl.registerLazySingleton<HomeCubit>(
+  sl.registerFactory<HomeCubit>(
       ()=> HomeCubit(),
   );
   sl.registerSingleton<SymbolCubit>(
@@ -41,8 +40,4 @@ Future<void> init() async {
     () => HomeDataSourceImpl(),
   );
 
-  // Core
-  sl.registerLazySingleton<HttpClient>(
-    () => HttpClient(),
-  );
 }

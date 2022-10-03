@@ -1,5 +1,6 @@
 import 'package:pricetracker/src/features/home/domain/repositories/home_repository.dart';
 
+/// Get company data list
 abstract class GetCompanyUseCase {
   List<String> call();
 }

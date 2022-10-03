@@ -22,10 +22,8 @@ class CompanyDropDown extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is Initial) {
-          print("Company Initial");
           return const LoadingIndicator();
         } else if (state is CompanyLoaded) {
-          print("Company CompanyLoaded");
           return AppDropdown(
             dropDownOptions: state.companyEnums
                 .map((symbols) => DropdownModel(symbols.toTitleCase(), symbols))

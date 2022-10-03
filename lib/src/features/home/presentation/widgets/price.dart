@@ -20,26 +20,20 @@ class PriceValue extends StatelessWidget {
       builder: (context, state) {
         if (state is PriceLoaded) {
           return AppText(
-            text: state.price.toString(),
+            text: "Price: ${state.price.toString()}",
             textType: TextType.bold,
             textAlign: TextAlign.center,
           );
-        }
-        if(state is PriceLoading) {
-          return LoadingIndicator();
-        }
-        if(state is PriceNotFound) {
-          return  AppText(
+        } else if (state is PriceLoading) {
+          return const LoadingIndicator();
+        } else if (state is PriceNotFound) {
+          return AppText(
             text: state.message,
             textType: TextType.regular,
             textAlign: TextAlign.center,
           );
         }
-        return const AppText(
-          text: '0',
-          textType: TextType.bold,
-          textAlign: TextAlign.center,
-        );
+        return const SizedBox.shrink();
       },
     );
   }

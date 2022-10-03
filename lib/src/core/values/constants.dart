@@ -1,6 +1,7 @@
 class Constants {
   //APIs
-  static const String baseUrl = 'wss://ws.binaryws.com/websockets/v3?app_id=33006';
+  static const String appId = '33006';
+  static const String baseUrl = 'wss://ws.binaryws.com/websockets/v3?app_id=$appId';
 
   //State
   static const String loading = 'Loading';

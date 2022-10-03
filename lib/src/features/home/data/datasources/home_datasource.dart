@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:pricetracker/src/core/values/constants.dart';
 import 'package:web_socket_channel/io.dart';
 

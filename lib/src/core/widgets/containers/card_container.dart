@@ -1,5 +1,6 @@
 import 'package:pricetracker/src/core/utils/imports.dart';
 
+/// A [StatelessWidget] that decorates a [Container] with radius and stroke.
 class CardContainer extends StatelessWidget {
   final double? padding;
   final Color? backgroundColor;
