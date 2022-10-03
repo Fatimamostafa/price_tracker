@@ -12,6 +12,10 @@ class SymbolsLoaded extends SocketState {
   });
 }
 
+class SymbolsLoading extends SocketState {
+  const SymbolsLoading();
+}
+
 class SymbolsEmpty extends SocketState {
   final String message;
 

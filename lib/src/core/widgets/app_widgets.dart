@@ -11,7 +11,7 @@ class AppWidgets {
     currentScaffold.showSnackBar(SnackBar(
       backgroundColor: color ?? AppColors.purple,
       content: AppText(
-        textType: TextType.bold,
+        textType: TextType.regular,
         text: msg,
         color: Colors.white,
         fontWeight: FontWeight.w500,

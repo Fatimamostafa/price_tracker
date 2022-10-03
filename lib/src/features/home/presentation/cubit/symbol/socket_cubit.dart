@@ -7,12 +7,10 @@ import 'package:web_socket_channel/io.dart';
 
 part 'socket_state.dart';
 
-class SocketCubit extends Cubit<SocketState>  {
-  final _channel =  IOWebSocketChannel.connect(Uri.parse(Constants.baseUrl));
-
+class SocketCubit extends Cubit<SocketState> {
+  final _channel = IOWebSocketChannel.connect(Uri.parse(Constants.baseUrl));
 
   SocketCubit() : super(const SymbolsEmpty(message: 'Empty')) {
-
     _channel.stream.listen((event) {
       if (event.contains("active_symbols")) {
         onLoadedActiveSymbols(event);
@@ -21,6 +19,7 @@ class SocketCubit extends Cubit<SocketState>  {
   }
 
   void getActiveSymbols(String landingCompany) async {
+    emit(const SymbolsLoading());
     _channel.sink.add(jsonEncode({
       "active_symbols": "brief",
       "landing_company": landingCompany,
@@ -35,6 +34,14 @@ class SocketCubit extends Cubit<SocketState>  {
 
   void onLoadedActiveSymbols(event) async {
     print("RESPONSE:: $event ");
-    emit(SymbolsLoaded(symbols:  ActiveSymbols.fromJson(jsonDecode(event))));
+    final activeSymbols = ActiveSymbols.fromJson(jsonDecode(event));
+
+    activeSymbols.active_symbols.isNotEmpty
+        ? emit(
+            SymbolsLoaded(symbols: activeSymbols),
+          )
+        : emit(
+            const SymbolsEmpty(message: Constants.emptySymbols),
+          );
   }
 }

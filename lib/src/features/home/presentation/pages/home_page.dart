@@ -60,11 +60,14 @@ class _HomePageState extends State<HomePage> {
               create: (_) => sl<HomeCubit>(),
               child: CompanyDropDown(),
             ),
+            Spacing(size: 2,),
             BlocProvider(
               create: (context) => sl<SocketCubit>(),
               child: SymbolDropDown(),
             )
           ],
+        ).withPadding(
+          padding: EdgeInsets.all(applySpacing(2.5)),
         ),
       ),
     );

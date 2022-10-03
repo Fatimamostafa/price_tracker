@@ -15,5 +15,6 @@ class Constants {
   static const String taskAssignee = 'Fatima Mostafa';
   static const String  dropdownCompanyHint = 'Select Company';
   static const String  dropdownSymbolHint = 'Select Symbol';
+  static const String  dropdownEmptySymbolHint = 'No Symbol Available';
 
 }

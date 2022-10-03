@@ -16,8 +16,9 @@ Future<void> init() async {
   sl.registerFactory(
     () => HomeCubit(),
   );
-  sl.registerFactory(
-        () => SocketCubit(),
+  sl.registerSingleton<SocketCubit>(
+    SocketCubit(),
+    signalsReady: true,
   );
 
   // Use cases

@@ -1,7 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pricetracker/src/core/utils/imports.dart';
 import 'package:pricetracker/src/core/values/constants.dart';
+import 'package:pricetracker/src/core/widgets/app_widgets.dart';
 import 'package:pricetracker/src/core/widgets/dropdown.dart';
+import 'package:pricetracker/src/core/widgets/dropdown_inactive.dart';
 import 'package:pricetracker/src/features/home/data/models/dropdown.dart';
 import 'package:pricetracker/src/features/home/presentation/cubit/symbol/socket_cubit.dart';
 
@@ -14,9 +16,8 @@ class SymbolDropDown extends StatelessWidget {
       listener: (context, state) {
         if (state is SymbolsLoaded) {
           print("SymbolsLoaded listener");
-        }
-        else if (state is SymbolsEmpty) {
-          print("SymbolEmpty listener");
+        } else if (state is SymbolsEmpty) {
+          AppWidgets.showSnackBar(state.message);
         }
         return;
       },
@@ -31,8 +32,12 @@ class SymbolDropDown extends StatelessWidget {
             callBack: (_) => onSymbolSelection,
             hint: Constants.dropdownSymbolHint,
           );
+        } else if (state is SymbolsLoading) {
+          return const AppDropdownInactive(
+              hint: Constants.dropdownEmptySymbolHint, isLoading: true);
         }
-        return  Container(color: Colors.amber, height: 40,);
+        return const AppDropdownInactive(
+            hint: Constants.dropdownEmptySymbolHint, isLoading: false);
       },
     );
   }

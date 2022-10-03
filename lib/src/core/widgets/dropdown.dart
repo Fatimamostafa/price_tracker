@@ -33,6 +33,7 @@ class _AppDropdownState extends State<AppDropdown> {
       padding: 0,
       withBorder: true,
       child: DropdownButton<DropdownModel>(
+          isExpanded: true,
               hint: AppText(
                 textType: TextType.regular,
                 text: widget.hint,
