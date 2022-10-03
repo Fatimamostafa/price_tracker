@@ -3,7 +3,7 @@ import 'package:pricetracker/src/features/home/data/datasources/home_datasource.
 import 'package:pricetracker/src/features/home/data/repositories/home_repository_impl.dart';
 import 'package:pricetracker/src/features/home/domain/repositories/home_repository.dart';
 import 'package:pricetracker/src/features/home/domain/usecases/get_company.dart';
-import 'package:pricetracker/src/features/home/presentation/cubit/home/home_cubit.dart';
+import 'package:pricetracker/src/features/home/presentation/cubit/company/company_cubit.dart';
 import 'package:pricetracker/src/features/home/presentation/cubit/price/price_cubit.dart';
 import 'package:pricetracker/src/features/home/presentation/cubit/symbol/symbol_cubit.dart';
 
@@ -13,8 +13,8 @@ final sl = GetIt.instance;
 /// Initializes dependencies on app start
 Future<void> init() async {
   // Cubit
-  sl.registerFactory<HomeCubit>(
-      ()=> HomeCubit(),
+  sl.registerFactory<CompanyCubit>(
+      ()=> CompanyCubit(),
   );
   sl.registerSingleton<SymbolCubit>(
     SymbolCubit(),

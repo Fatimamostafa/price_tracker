@@ -3,11 +3,10 @@ import 'package:pricetracker/src/core/utils/extension.dart';
 import 'package:pricetracker/src/core/utils/imports.dart';
 import 'package:pricetracker/src/core/utils/service_locator.dart';
 import 'package:pricetracker/src/core/values/constants.dart';
-
 import 'package:pricetracker/src/core/widgets/dropdown.dart';
 import 'package:pricetracker/src/core/widgets/loading_indicator.dart';
 import 'package:pricetracker/src/features/home/data/models/dropdown.dart';
-import 'package:pricetracker/src/features/home/presentation/cubit/home/home_cubit.dart';
+import 'package:pricetracker/src/features/home/presentation/cubit/company/company_cubit.dart';
 import 'package:pricetracker/src/features/home/presentation/cubit/symbol/symbol_cubit.dart';
 
 class CompanyDropDown extends StatelessWidget {
@@ -15,7 +14,7 @@ class CompanyDropDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeCubit, HomeState>(
+    return BlocConsumer<CompanyCubit, CompanyState>(
       listener: (context, state) {
         if (state is CompanyLoaded) {}
         return;

@@ -5,4 +5,10 @@ class DropdownModel {
   final String value;
 
   const DropdownModel(this.display, this.value);
+
+  @override
+  bool operator ==(Object model) => model is DropdownModel && model.display == display;
+
+  @override
+  int get hashCode => display.hashCode;
 }

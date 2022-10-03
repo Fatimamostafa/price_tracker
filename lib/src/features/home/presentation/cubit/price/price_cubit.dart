@@ -52,7 +52,6 @@ class PriceCubit extends Cubit<PriceState> {
   }
 
   void priceForget() {
-
     emit(const PriceInitial());
     if (_subscriptionId != null) {
       _channel.sink.add(jsonEncode({

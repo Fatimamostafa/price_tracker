@@ -1,10 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pricetracker/src/core/utils/imports.dart';
 import 'package:pricetracker/src/core/utils/service_locator.dart';
 import 'package:pricetracker/src/core/values/constants.dart';
-import 'package:pricetracker/src/features/home/presentation/cubit/home/home_cubit.dart';
+import 'package:pricetracker/src/features/home/presentation/cubit/company/company_cubit.dart';
 import 'package:pricetracker/src/features/home/presentation/cubit/price/price_cubit.dart';
 import 'package:pricetracker/src/features/home/presentation/cubit/symbol/symbol_cubit.dart';
 import 'package:pricetracker/src/features/home/presentation/widgets/company.dart';
@@ -34,7 +32,7 @@ class HomePage extends StatelessWidget {
             size: 4,
           ),
           BlocProvider(
-            create: (_) => sl<HomeCubit>(),
+            create: (_) => sl<CompanyCubit>(),
             child: const CompanyDropDown(),
           ),
           const Spacing(
@@ -45,7 +43,7 @@ class HomePage extends StatelessWidget {
             child: const SymbolDropDown(),
           ),
           const Spacing(
-            size: 4,
+            size: 8,
           ),
           BlocProvider(
             create: (context) => sl<PriceCubit>(),

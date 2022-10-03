@@ -3,12 +3,12 @@ import 'package:pricetracker/src/core/utils/service_locator.dart';
 import 'package:pricetracker/src/features/home/domain/usecases/get_company.dart';
 import 'package:pricetracker/src/features/home/presentation/cubit/price/price_cubit.dart';
 
-part 'home_state.dart';
+part 'company_state.dart';
 
-class HomeCubit extends Cubit<HomeState> {
+class CompanyCubit extends Cubit<CompanyState> {
   final GetCompanyUseCase _getCompanyUseCase = sl<GetCompanyUseCase>();
 
-  HomeCubit() : super(const Initial()) {
+  CompanyCubit() : super(const Initial()) {
     getCompany();
   }
 
