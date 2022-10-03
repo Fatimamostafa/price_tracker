@@ -16,5 +16,6 @@ class Constants {
   static const String  dropdownCompanyHint = 'Select Company';
   static const String  dropdownSymbolHint = 'Select Symbol';
   static const String  dropdownEmptySymbolHint = 'No Symbol Available';
+  static const String  appTitle = "Price Tracker";
 
 }

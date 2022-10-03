@@ -7,8 +7,8 @@ import 'package:pricetracker/src/core/values/constants.dart';
 import 'package:pricetracker/src/core/widgets/dropdown.dart';
 import 'package:pricetracker/src/core/widgets/loading_indicator.dart';
 import 'package:pricetracker/src/features/home/data/models/dropdown.dart';
-import 'package:pricetracker/src/features/home/presentation/cubit/home_cubit.dart';
-import 'package:pricetracker/src/features/home/presentation/cubit/symbol/socket_cubit.dart';
+import 'package:pricetracker/src/features/home/presentation/cubit/home/home_cubit.dart';
+import 'package:pricetracker/src/features/home/presentation/cubit/symbol/symbol_cubit.dart';
 
 class CompanyDropDown extends StatelessWidget {
   const CompanyDropDown({Key? key}) : super(key: key);
@@ -39,7 +39,7 @@ class CompanyDropDown extends StatelessWidget {
 
   void onCompanySelection(String? val, BuildContext context) {
     if (val != null) {
-      sl<SocketCubit>().getActiveSymbols(val);
+      sl<SymbolCubit>().getActiveSymbols(val);
     }
   }
 }

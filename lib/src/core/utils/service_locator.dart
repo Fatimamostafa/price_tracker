@@ -4,8 +4,9 @@ import 'package:pricetracker/src/features/home/data/datasources/home_datasource.
 import 'package:pricetracker/src/features/home/data/repositories/home_repository_impl.dart';
 import 'package:pricetracker/src/features/home/domain/repositories/home_repository.dart';
 import 'package:pricetracker/src/features/home/domain/usecases/get_company.dart';
-import 'package:pricetracker/src/features/home/presentation/cubit/home_cubit.dart';
-import 'package:pricetracker/src/features/home/presentation/cubit/symbol/socket_cubit.dart';
+import 'package:pricetracker/src/features/home/presentation/cubit/home/home_cubit.dart';
+import 'package:pricetracker/src/features/home/presentation/cubit/price/price_cubit.dart';
+import 'package:pricetracker/src/features/home/presentation/cubit/symbol/symbol_cubit.dart';
 
 // service locator
 final sl = GetIt.instance;
@@ -16,8 +17,12 @@ Future<void> init() async {
   sl.registerFactory(
     () => HomeCubit(),
   );
-  sl.registerSingleton<SocketCubit>(
-    SocketCubit(),
+  sl.registerSingleton<SymbolCubit>(
+    SymbolCubit(),
+    signalsReady: true,
+  );
+  sl.registerSingleton<PriceCubit>(
+    PriceCubit(),
     signalsReady: true,
   );
 

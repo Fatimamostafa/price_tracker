@@ -1,16 +1,16 @@
 import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pricetracker/src/core/values/constants.dart';
-import 'package:pricetracker/src/features/home/data/models/active_symbols.dart';
+import 'package:pricetracker/src/features/home/data/models/symbols/active_symbols.dart';
 
 import 'package:web_socket_channel/io.dart';
 
-part 'socket_state.dart';
+part 'symbol_state.dart';
 
-class SocketCubit extends Cubit<SocketState> {
+class SymbolCubit extends Cubit<SymbolState> {
   final _channel = IOWebSocketChannel.connect(Uri.parse(Constants.baseUrl));
 
-  SocketCubit() : super(const SymbolsEmpty(message: 'Empty')) {
+  SymbolCubit() : super(const SymbolsEmpty(message: 'Empty')) {
     _channel.stream.listen((event) {
       if (event.contains("active_symbols")) {
         onLoadedActiveSymbols(event);
