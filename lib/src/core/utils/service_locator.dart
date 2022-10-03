@@ -14,8 +14,8 @@ final sl = GetIt.instance;
 /// Initializes dependencies on app start
 Future<void> init() async {
   // Cubit
-  sl.registerFactory(
-    () => HomeCubit(),
+  sl.registerLazySingleton<HomeCubit>(
+      ()=> HomeCubit(),
   );
   sl.registerSingleton<SymbolCubit>(
     SymbolCubit(),

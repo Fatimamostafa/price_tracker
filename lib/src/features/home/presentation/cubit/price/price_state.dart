@@ -9,7 +9,7 @@ class PriceInitial extends PriceState {
 }
 
 class PriceLoaded extends PriceState {
-  final String price;
+  final double price;
 
   const PriceLoaded({
     required this.price,
@@ -20,8 +20,8 @@ class PriceLoading extends PriceState {
   const PriceLoading();
 }
 
-class PriceError extends PriceState {
+class PriceNotFound extends PriceState {
   final String message;
 
-  const PriceError({required this.message});
+  const PriceNotFound({required this.message});
 }

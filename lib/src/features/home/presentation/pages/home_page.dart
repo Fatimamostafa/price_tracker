@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
             child: const SymbolDropDown(),
           ),
           const Spacing(
-            size: 2,
+            size: 4,
           ),
           BlocProvider(
             create: (context) => sl<PriceCubit>(),

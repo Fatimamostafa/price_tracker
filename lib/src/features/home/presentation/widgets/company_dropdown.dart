@@ -22,13 +22,15 @@ class CompanyDropDown extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is Initial) {
+          print("Company Initial");
           return const LoadingIndicator();
         } else if (state is CompanyLoaded) {
+          print("Company CompanyLoaded");
           return AppDropdown(
             dropDownOptions: state.companyEnums
                 .map((symbols) => DropdownModel(symbols.toTitleCase(), symbols))
                 .toList(),
-            callBack: (String? s) => onCompanySelection(s, context),
+            callBack: (String? s) => onCompanySelection(s),
             hint: Constants.dropdownCompanyHint,
           );
         }
@@ -37,7 +39,7 @@ class CompanyDropDown extends StatelessWidget {
     );
   }
 
-  void onCompanySelection(String? val, BuildContext context) {
+  void onCompanySelection(String? val) {
     if (val != null) {
       sl<SymbolCubit>().getActiveSymbols(val);
     }

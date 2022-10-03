@@ -16,7 +16,7 @@ class SymbolDropDown extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<SymbolCubit, SymbolState>(
       listener: (context, state) {
-       if (state is SymbolsEmpty) {
+        if (state is SymbolsEmpty) {
           AppWidgets.showSnackBar(state.message);
         }
       },
@@ -27,7 +27,7 @@ class SymbolDropDown extends StatelessWidget {
                 .map((symbols) =>
                     DropdownModel(symbols.display_name, symbols.symbol))
                 .toList(),
-            callBack: (_) => onSymbolSelection,
+            callBack: (String? s) => onSymbolSelection(s),
             hint: Constants.dropdownSymbolHint,
           );
         } else if (state is SymbolsLoading) {
@@ -40,7 +40,9 @@ class SymbolDropDown extends StatelessWidget {
     );
   }
 
-  void onSymbolSelection(String symbol) {
-    sl<PriceCubit>().getPrice(symbol);
+  void onSymbolSelection(String? symbol) {
+    if (symbol != null) {
+      sl<PriceCubit>().getPrice(symbol);
+    }
   }
 }
